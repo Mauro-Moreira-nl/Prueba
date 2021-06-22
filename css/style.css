@@ -1,0 +1,267 @@
+/* Podriamos usar las buenas practicas para dividir nuestro codigo ej
+tipografia
+globales
+titulo hero o
+a lo mejor recordatorios para nosotros pero la idea es mantener orden */
+
+/* pseudo elementos custom propiety */
+:root{
+    --fondo-nav: lightsalmon;
+    --rose: darkviolet;
+    --fondo: #fffffff;
+    --letras: #fff;
+
+    --color-background: #202226;
+    --color-black: #0e0f10;
+    --color-footer: #333333;
+    --color-gray: #4d4d4d;
+    --color-light-gray: #b8b9b9;
+    --color-secundario: #ff2825;
+
+    /* --fuente-principal: 3.8rem; */
+}
+/* Esto ayuda que nuestra caja no tenga problemas con su tamano, basta con decir
+ que el alto del model es 20 y que el paddin, border o margin no afecten a su tamano */
+/* apply a natural box layout model to all elements, but allowing components to change
+html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+*/
+html {
+    font-size: 62.5%;
+    box-sizing: border-box;
+  }
+*, *:before, *:after {
+    box-sizing: inherit;
+  }
+body {
+    font-size: 16px;
+    font-family: 'Pangolin', cursive;
+    /* background-color: var(--color-background); */
+    background-image: linear-gradient(to top, var(--color-background) 83%, var(--letras) 100%);
+}
+
+h1{
+    font-size: 3.8rem;
+}
+h2{
+    font-size: 2.8rem;
+}
+h3{
+    font-size: 1.8rem;
+}
+h1,h2,h3{
+    text-align: center;
+}
+
+/* Se puede ocupar h1 pero es mejor usar clases por que son reutizables */
+/* h1 { */
+/* .titulo {
+    text-align: center;
+    color: var(--letras);
+    Lo muevo a los distintos hs font-size: 3.8rem;
+} */
+.titulo span {
+    /* rem es relativo al documento y con lo del html es mas facil de trabajarlo
+    1rem = 10px */
+    font-size: 2rem;
+}
+/* Especificidad en CSS aunque en princpio funciona en cascada en cuanto mas especifico
+es lo que mas importa, sera tomado en cuenta primero ej: p.parrafo>p */
+
+.contenedor{
+    max-width: 120rem;
+    /* empieza por top-right-botton left en sentido del reloj tambien 0 auto */
+    margin: 0 auto 0 auto;
+    color: var(--letras);
+}
+
+.boton {
+    background-color: var(--color-secundario);
+    color: var(--letras);
+    padding: 1rem 3rem;
+    margin-top: 1rem;
+    font-size: 2rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: .5rem;
+    width: 90%;
+    text-align: center;
+    border: none;
+}
+@media (min-width: 48rem) {
+    .boton {
+        width: auto;
+    }
+}
+.boton:hover {
+    cursor: pointer;
+}
+
+.nav-bg{
+    background-color: var(--color-black);
+}
+
+.navegacion-principal{
+    /* Esto nos habilita flexbox */
+    display: flex;
+    /* flex-direction: column; */
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.navegacion-principal a{
+    padding: 1rem;
+    /* background-color: var(--color-gray); */
+    color: var(--letras);
+    text-decoration: none;
+}
+
+.navegacion-principal a:hover{
+    background-color: var(--color-footer);
+    color:var(--letras)
+}
+/* Los media querie heredan en este caso de navegacion pri.. es para verlo como en las pantallas naaaaasheeeeeee */
+/* 480 768 1140 1400px son los mas comunes para los mq  */
+@media (min-width: 48rem) {
+    .navegacion-principal {
+        flex-direction: row;
+        align-items: center; /*esto porque no se puede ocupar justify-content  */
+    }
+}
+
+.sombra {
+    /* estos son prefijos que algunos navegadores ya no los requieren */
+    /* -webkit-box-shadow: 0px 5px 15px 0px rgba(112,112,122,0.54);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(112,112,122,0.54); */
+    box-shadow: 0px 5px 15px 0px rgba(112,112,122,0.54);
+    /* background-color: white; */
+    border-radius: 1rem;
+}
+
+.hero {
+    background-image: url(../img/disenoweb.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 45rem;
+    /* padding: 2rem; */
+    /* Casi siempre el padre debe tener posicion relativo */
+    position: relative;
+    margin-bottom: 2rem;
+}
+.contenido-hero {
+    position: absolute;
+    /* Esto nos servira para para darle sombra a las imagenes y a parte para botones y demas */
+    background-color: rgba(0,0,0,0.3);
+    /* background-color: rgb(0 0 0 / 30%); */
+    width: 100%;
+    height: 100%;
+    /* bottom: 0px;
+    left: 0px;
+    top: 0px;
+    right: 0px; */
+
+    /* Esto nos sirve para alinear verticalmente en los dos casos */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.contenido-hero p{
+    color: var(--letras);
+} 
+
+
+@media (min-width: 48rem) {
+    /* serivicios */
+    .servicios {
+        display: grid;
+        /* la sintaxis corta seria  */
+        /* grid: 20rem 80rem / 20rem 20rem;
+        grid-template-rows: 20rem 80rem;
+        grid-template-columns: 15rem 15rem ; */
+        /* grid-template-columns: 1fr 1fr 1fr; */
+        /* tambien puede ser */
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 5rem;
+    }
+}
+
+.servicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.servicio h3 {
+    color: var(--rose);
+    font-weight: normal;
+}
+
+
+.servicio p {
+    line-height: 2;
+    text-align: center;
+}
+
+.servicio .icono {
+    height: 15rem;
+    width: 15rem;
+    background-color: rgba(250, 250, 250, 0.8);
+    border-radius: 50%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* contacto */
+.formulario{
+    background-color: var(--color-gray);
+    width: min(60rem, 100%);
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 1rem;   
+    color: var(--letras);
+}
+.formulario fieldset {
+    border: none;
+}
+.formulario legend {
+    text-align: center;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: var(--letras);
+
+}
+.contenedor-campo{
+
+}
+.campo {
+    margin-bottom: 1rem;
+}
+.campo label {
+    color: var(--letras);
+    font-weight: bold;
+    margin-bottom: .5rem;
+    display: block;
+}
+.input-text {
+    width: 100%;
+    border: none;
+    padding: 1.5rem;
+    border-radius: .5rem;
+}
+
+.enviar.boton {
+    width: 100%;
+}
